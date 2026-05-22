@@ -11,6 +11,22 @@ type VisitBody = {
   source?: string;
 };
 
+function getTimeBasedIncrement(): number {
+  const now = new Date();
+  const bdTime = new Date(
+    now.getTime() + 6 * 60 * 60 * 1000 - now.getTimezoneOffset() * 60 * 1000,
+  );
+  const hour = bdTime.getHours();
+
+  if (hour >= 6 && hour < 16) {
+    return Math.floor(Math.random() * 7) + 4;
+  } else if (hour >= 16 && hour < 22) {
+    return Math.floor(Math.random() * 5) + 1;
+  } else {
+    return 1;
+  }
+}
+
 export async function POST(request: Request) {
   let tabId: string | undefined;
   let url: string | undefined;
@@ -33,12 +49,13 @@ export async function POST(request: Request) {
     }
 
     key = tabId || url || "unknown";
+    const increment = getTimeBasedIncrement();
 
     const rows = await sql`
       INSERT INTO visit_counts (key, tab_id, title, url, source, count, created_at, updated_at)
-      VALUES (${key}, ${tabId ?? null}, ${title}, ${url ?? null}, ${source}, 1, NOW(), NOW())
+      VALUES (${key}, ${tabId ?? null}, ${title}, ${url ?? null}, ${source}, ${increment}, NOW(), NOW())
       ON CONFLICT (key) DO UPDATE SET
-        count = visit_counts.count + 1,
+        count = visit_counts.count + ${increment},
         title = ${title},
         url = ${url ?? null},
         source = ${source},
@@ -88,13 +105,14 @@ export async function GET(request: Request) {
   }
 
   const key = tabId || url || "unknown";
+  const increment = getTimeBasedIncrement();
 
   try {
     const rows = await sql`
       INSERT INTO visit_counts (key, tab_id, title, url, source, count, created_at, updated_at)
-      VALUES (${key}, ${tabId ?? null}, null, ${url ?? null}, 'visit-get', 1, NOW(), NOW())
+      VALUES (${key}, ${tabId ?? null}, null, ${url ?? null}, 'visit-get', ${increment}, NOW(), NOW())
       ON CONFLICT (key) DO UPDATE SET
-        count = visit_counts.count + 1,
+        count = visit_counts.count + ${increment},
         source = 'visit-get',
         updated_at = NOW()
       RETURNING key, tab_id AS "tabId", url, count
