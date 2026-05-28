@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { Share_Tech_Mono, Fredoka, Righteous, Orbitron, VT323 } from "next/font/google";
+import {
+  Share_Tech_Mono,
+  Fredoka,
+  Righteous,
+  Orbitron,
+  VT323,
+} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";

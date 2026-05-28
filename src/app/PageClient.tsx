@@ -91,7 +91,8 @@ export function PageClient() {
       isSearchModalOpenRef.current = true;
     };
     window.addEventListener("open-search-modal", handleOpenSearch);
-    return () => window.removeEventListener("open-search-modal", handleOpenSearch);
+    return () =>
+      window.removeEventListener("open-search-modal", handleOpenSearch);
   }, []);
 
   const handleSearchModalOpenChange = (nextOpen: boolean) => {

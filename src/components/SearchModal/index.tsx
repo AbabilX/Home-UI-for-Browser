@@ -37,7 +37,8 @@ const SearchModal = ({
   const [query, setQuery] = useState("");
   const [apiSuggestions, setApiSuggestions] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const [isInlineHistoryDismissed, setIsInlineHistoryDismissed] = useState(false);
+  const [isInlineHistoryDismissed, setIsInlineHistoryDismissed] =
+    useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const lastAppliedRequestIdRef = useRef(0);
 

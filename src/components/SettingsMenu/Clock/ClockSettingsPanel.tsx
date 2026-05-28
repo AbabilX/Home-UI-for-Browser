@@ -190,7 +190,9 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
                 ))}
               </div>
               <div className="flex items-center justify-between pt-1">
-                <span className="text-xs text-muted-foreground font-medium">Show seconds</span>
+                <span className="text-xs text-muted-foreground font-medium">
+                  Show seconds
+                </span>
                 <button
                   onClick={() => setTempSeconds(!tempSeconds)}
                   className={cn(
@@ -241,7 +243,9 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
                 />
               </div>
               <div className="flex items-center justify-between pt-1">
-                <span className="text-xs text-muted-foreground font-medium">Glow effect</span>
+                <span className="text-xs text-muted-foreground font-medium">
+                  Glow effect
+                </span>
                 <button
                   onClick={() => setTempGlow(!tempGlow)}
                   className={cn(
@@ -270,10 +274,20 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
                   strokeWidth={2}
                   className="text-primary"
                 />
-                <span className="text-sm font-semibold">Clock Face Preview Selection</span>
+                <span className="text-sm font-semibold">
+                  Clock Face Preview Selection
+                </span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {(["classic", "modern", "elegant", "futuristic", "retro"] as const).map((s) => (
+                {(
+                  [
+                    "classic",
+                    "modern",
+                    "elegant",
+                    "futuristic",
+                    "retro",
+                  ] as const
+                ).map((s) => (
                   <button
                     key={s}
                     onClick={() => setTempStyle(s)}
@@ -282,11 +296,13 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
                       tempStyle === s
                         ? "border-primary bg-primary/5 shadow-md ring-1 ring-primary/20"
                         : "border-border/30 bg-muted/5 hover:border-primary/30",
-                      s === "retro" && "sm:col-span-2"
+                      s === "retro" && "sm:col-span-2",
                     )}
                   >
                     <div className="absolute top-1.5 right-2 opacity-30 select-none">
-                      <span className="text-[7px] font-black uppercase tracking-wider">{s}</span>
+                      <span className="text-[7px] font-black uppercase tracking-wider">
+                        {s}
+                      </span>
                     </div>
                     <span
                       className="text-2xl font-bold tracking-wider text-foreground"
@@ -328,10 +344,19 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
       </div>
 
       <div className="flex gap-3 pt-3 border-t border-border/10 shrink-0 justify-end">
-        <Button variant="outline" size="sm" className="w-auto px-6 h-9 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-white/5" onClick={onBack}>
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-auto px-6 h-9 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-white/5"
+          onClick={onBack}
+        >
           {t("cancel")}
         </Button>
-        <Button size="sm" className="w-auto px-6 h-9 rounded-xl font-bold text-xs uppercase tracking-widest bg-primary hover:bg-primary/95 shadow-lg shadow-primary/10" onClick={handleSave}>
+        <Button
+          size="sm"
+          className="w-auto px-6 h-9 rounded-xl font-bold text-xs uppercase tracking-widest bg-primary hover:bg-primary/95 shadow-lg shadow-primary/10"
+          onClick={handleSave}
+        >
           {t("saveChanges")}
         </Button>
       </div>

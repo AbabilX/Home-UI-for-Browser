@@ -60,43 +60,113 @@ export function HistoryPanel({ onBack }: HistoryPanelProps) {
       )}
 
       {entries.length > 0 ? (
-        <div className="space-y-2 overflow-y-auto flex-1">
-          {entries.map((entry) => (
-            <div
-              key={entry.id}
-              className="flex items-center gap-3 rounded-xl border border-border/40 bg-muted/10 p-3"
-            >
-              <div className="p-1.5 rounded-full bg-muted/40 text-muted-foreground shrink-0">
-                <HugeiconsIcon
-                  icon={entry.type === "search" ? Search01Icon : Globe02Icon}
-                  size={13}
-                  strokeWidth={2}
-                />
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+          {/* Left Column: Search History */}
+          <div className="space-y-3 bg-muted/10 p-4 rounded-2xl border border-border/20 transition-all hover:bg-muted/15 flex flex-col h-[52vh]">
+            <h3 className="text-xs font-black uppercase tracking-widest text-primary/80 mb-1">
+              Search Queries
+            </h3>
+            {entries.filter((e) => e.type === "search").length > 0 ? (
+              <div className="space-y-2 overflow-y-auto flex-1 pr-1 scrollbar-thin scrollbar-thumb-muted-foreground/10 scrollbar-track-transparent">
+                {entries
+                  .filter((e) => e.type === "search")
+                  .map((entry) => (
+                    <div
+                      key={entry.id}
+                      className="flex items-center gap-3 rounded-xl border border-border/40 bg-background/50 p-2.5 hover:bg-accent/40 transition-colors"
+                    >
+                      <div className="p-1.5 rounded-lg bg-muted/40 text-muted-foreground shrink-0">
+                        <HugeiconsIcon
+                          icon={Search01Icon}
+                          size={13}
+                          strokeWidth={2}
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-semibold text-foreground truncate">
+                          {entry.primary}
+                        </p>
+                        <p className="text-[9px] text-muted-foreground truncate uppercase font-bold tracking-wider">
+                          {entry.secondary}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => removeSearchEntry(entry.entryId)}
+                        className="h-7 w-7 flex items-center justify-center rounded-full text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors shrink-0"
+                      >
+                        <HugeiconsIcon
+                          icon={Delete02Icon}
+                          size={14}
+                          strokeWidth={2}
+                        />
+                      </button>
+                    </div>
+                  ))}
               </div>
-              <div className="min-w-0 flex-1">
-                <p className="text-xs font-medium text-foreground truncate">
-                  {entry.primary}
-                </p>
-                <p className="text-[10px] text-muted-foreground truncate">
-                  {entry.secondary}
+            ) : (
+              <div className="flex flex-col items-center justify-center flex-1 text-center py-6">
+                <p className="text-xs font-semibold text-muted-foreground/50">
+                  No search logs
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() =>
-                  entry.type === "search"
-                    ? removeSearchEntry(entry.entryId)
-                    : removeTabEntry(entry.entryId)
-                }
-                className="h-7 w-7 flex items-center justify-center rounded-full text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors shrink-0"
-              >
-                <HugeiconsIcon icon={Delete02Icon} size={14} strokeWidth={2} />
-              </button>
-            </div>
-          ))}
+            )}
+          </div>
+
+          {/* Right Column: Visited Links */}
+          <div className="space-y-3 bg-muted/10 p-4 rounded-2xl border border-border/20 transition-all hover:bg-muted/15 flex flex-col h-[52vh]">
+            <h3 className="text-xs font-black uppercase tracking-widest text-primary/80 mb-1">
+              Visited Shortcuts
+            </h3>
+            {entries.filter((e) => e.type === "tab").length > 0 ? (
+              <div className="space-y-2 overflow-y-auto flex-1 pr-1 scrollbar-thin scrollbar-thumb-muted-foreground/10 scrollbar-track-transparent">
+                {entries
+                  .filter((e) => e.type === "tab")
+                  .map((entry) => (
+                    <div
+                      key={entry.id}
+                      className="flex items-center gap-3 rounded-xl border border-border/40 bg-background/50 p-2.5 hover:bg-accent/40 transition-colors"
+                    >
+                      <div className="p-1.5 rounded-lg bg-muted/40 text-muted-foreground shrink-0">
+                        <HugeiconsIcon
+                          icon={Globe02Icon}
+                          size={13}
+                          strokeWidth={2}
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-semibold text-foreground truncate">
+                          {entry.primary}
+                        </p>
+                        <p className="text-[9px] text-muted-foreground truncate font-medium">
+                          {entry.secondary}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => removeTabEntry(entry.entryId)}
+                        className="h-7 w-7 flex items-center justify-center rounded-full text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors shrink-0"
+                      >
+                        <HugeiconsIcon
+                          icon={Delete02Icon}
+                          size={14}
+                          strokeWidth={2}
+                        />
+                      </button>
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center flex-1 text-center py-6">
+                <p className="text-xs font-semibold text-muted-foreground/50">
+                  No clicked bookmarks
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center flex-1 rounded-xl border border-dashed border-border/40 text-center py-8">
+        <div className="flex flex-col items-center justify-center flex-1 rounded-xl border border-dashed border-border/40 text-center py-16">
           <HugeiconsIcon
             icon={TimeScheduleIcon}
             size={28}

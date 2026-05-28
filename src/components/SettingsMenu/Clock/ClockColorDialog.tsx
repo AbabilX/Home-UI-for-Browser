@@ -339,7 +339,9 @@ export function ClockColorDialog({
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {(["classic", "modern", "elegant", "futuristic", "retro"] as const).map((theme) => (
+              {(
+                ["classic", "modern", "elegant", "futuristic", "retro"] as const
+              ).map((theme) => (
                 <button
                   key={theme}
                   onClick={() => setTempStyle(theme)}
@@ -348,7 +350,7 @@ export function ClockColorDialog({
                     tempStyle === theme
                       ? "bg-primary/5 border-primary shadow-lg ring-2 ring-primary/5 scale-[1.02]"
                       : "bg-muted/5 border-border/10 hover:border-primary/30 hover:bg-muted/10 grayscale-[0.8] hover:grayscale-0",
-                    theme === "retro" && "col-span-2 sm:col-span-1"
+                    theme === "retro" && "col-span-2 sm:col-span-1",
                   )}
                 >
                   <div className="flex items-center justify-between mb-4 z-10">

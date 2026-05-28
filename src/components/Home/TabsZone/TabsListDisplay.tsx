@@ -204,7 +204,8 @@ const SortableShortcutCard = ({
                     style={{
                       width: "calc(var(--card-size-dynamic, 4.5rem) * 0.68)",
                       height: "calc(var(--card-size-dynamic, 4.5rem) * 0.68)",
-                      borderRadius: "calc(var(--card-size-dynamic, 4.5rem) * 0.06)",
+                      borderRadius:
+                        "calc(var(--card-size-dynamic, 4.5rem) * 0.06)",
                     }}
                   >
                     {favicon ? (
@@ -213,16 +214,19 @@ const SortableShortcutCard = ({
                         alt={hostname}
                         className="object-contain"
                         style={{
-                          borderRadius: "calc(var(--card-size-dynamic, 4.5rem) * 0.06)",
+                          borderRadius:
+                            "calc(var(--card-size-dynamic, 4.5rem) * 0.06)",
                         }}
                       />
                     ) : null}
                     <AvatarFallback
                       style={{
                         backgroundColor: "transparent",
-                        fontSize: "max(0.55rem, calc(var(--card-size-dynamic, 4.5rem) * 0.28))",
+                        fontSize:
+                          "max(0.55rem, calc(var(--card-size-dynamic, 4.5rem) * 0.28))",
                         fontWeight: 600,
-                        borderRadius: "calc(var(--card-size-dynamic, 4.5rem) * 0.06)",
+                        borderRadius:
+                          "calc(var(--card-size-dynamic, 4.5rem) * 0.06)",
                       }}
                       className="text-foreground"
                     >
@@ -241,7 +245,8 @@ const SortableShortcutCard = ({
           <p
             className="w-full text-center text-foreground leading-tight"
             style={{
-              fontSize: "max(0.5rem, calc(var(--card-size-dynamic, 4.5rem) * 0.17))",
+              fontSize:
+                "max(0.5rem, calc(var(--card-size-dynamic, 4.5rem) * 0.17))",
               fontWeight: 400,
               letterSpacing: "0px",
               overflow: "hidden",
@@ -351,9 +356,9 @@ export const TabsList = () => {
         <div className="flex justify-end mb-6">
           <AddTabDialog />
         </div>
-        
+
         {/* Mobile Only Search Box */}
-        <div 
+        <div
           onClick={() => {
             window.dispatchEvent(new CustomEvent("open-search-modal"));
           }}
@@ -387,7 +392,7 @@ export const TabsList = () => {
       </div>
 
       {/* Mobile Only Search Box */}
-      <div 
+      <div
         onClick={() => {
           window.dispatchEvent(new CustomEvent("open-search-modal"));
         }}
