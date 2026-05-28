@@ -407,7 +407,7 @@ export function ClockColorDialog({
         </div>
 
         <DialogFooter className="p-6 border-t border-white/5 bg-black/40 flex-shrink-0">
-          <div className="flex w-full items-center justify-between gap-4">
+          <div className="flex w-full items-center justify-end gap-3">
             <Button
               variant="ghost"
               onClick={() => onOpenChange(false)}

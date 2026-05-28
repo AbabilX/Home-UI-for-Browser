@@ -327,11 +327,11 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
         </div>
       </div>
 
-      <div className="flex gap-3 pt-3 border-t border-border/10 shrink-0">
-        <Button variant="outline" size="sm" className="flex-1 h-9 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-white/5" onClick={onBack}>
+      <div className="flex gap-3 pt-3 border-t border-border/10 shrink-0 justify-end">
+        <Button variant="outline" size="sm" className="w-auto px-6 h-9 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-white/5" onClick={onBack}>
           {t("cancel")}
         </Button>
-        <Button size="sm" className="flex-1 h-9 rounded-xl font-bold text-xs uppercase tracking-widest bg-primary hover:bg-primary/95 shadow-lg shadow-primary/10" onClick={handleSave}>
+        <Button size="sm" className="w-auto px-6 h-9 rounded-xl font-bold text-xs uppercase tracking-widest bg-primary hover:bg-primary/95 shadow-lg shadow-primary/10" onClick={handleSave}>
           {t("saveChanges")}
         </Button>
       </div>
