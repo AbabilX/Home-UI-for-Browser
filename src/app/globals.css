@@ -150,7 +150,7 @@ body:has([role="dialog"]) .mobile-search-box {
 
 @media (max-width: 768px) {
   :root {
-    --card-size-dynamic: clamp(2.4rem, 9.2vw, var(--base-card-size, 4.5rem));
+    --card-size-dynamic: clamp(2.7rem, 10vw, var(--base-card-size, 4.5rem));
     --card-radius-dynamic: calc(var(--card-size-dynamic) * 0.16);
   }
 }
