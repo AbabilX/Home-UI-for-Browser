@@ -3,7 +3,7 @@
   "version": "0.02.15",
   "private": true,
   "scripts": {
-    "dev": "npx --yes nextcool clean --yes && next dev",
+    "dev": "npx nextcool clean && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
