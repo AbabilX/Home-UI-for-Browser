@@ -86,7 +86,7 @@ export function SettingsSidebar({
     );
 
   return (
-    <div className="flex flex-col w-52 shrink-0 border-r border-border/20 bg-muted/20">
+    <div className="flex flex-col w-64 shrink-0 border-r border-border/20 bg-muted/20">
       <div className="flex items-center justify-between px-4 py-3.5 border-b border-border/20">
         <span className="text-sm font-semibold text-foreground">
           {t("settings")}
