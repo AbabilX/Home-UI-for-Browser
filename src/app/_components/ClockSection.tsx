@@ -6,8 +6,8 @@ interface ClockSectionProps {
 }
 
 const paddingByPreset: Record<string, string> = {
-  compact: "pt-1.5 pb-2 px-2",
-  focus: "pt-6 pb-4 px-6",
+  compact: "pt-0 pb-1 px-2",
+  focus: "pt-2 pb-2 px-6",
 };
 
 const alignByPosition: Record<string, string> = {
@@ -19,7 +19,7 @@ export function ClockSection({
   clockPosition,
   layoutPreset,
 }: ClockSectionProps) {
-  const paddingClass = paddingByPreset[layoutPreset] ?? "pt-4 pb-3 px-4";
+  const paddingClass = paddingByPreset[layoutPreset] ?? "pt-1 pb-1 px-4";
   const align = alignByPosition[clockPosition] ?? "end";
 
   return (
