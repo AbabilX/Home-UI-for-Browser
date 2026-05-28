@@ -119,7 +119,7 @@ export function ClockColorDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl w-[92vw] max-h-[90vh] overflow-hidden flex flex-col p-0 bg-background/95 backdrop-blur-3xl border-border/40 shadow-stone-900/40">
+      <DialogContent className="w-[85vw] max-w-[85vw] h-[85vh] max-h-[85vh] overflow-hidden flex flex-col p-0 bg-background/95 backdrop-blur-3xl border-border/40 shadow-stone-900/40">
         <DialogHeader className="px-6 pt-6 flex-shrink-0">
           <DialogTitle className="flex items-center gap-2.5 text-xl font-black tracking-tighter uppercase italic">
             <HugeiconsIcon
@@ -334,7 +334,7 @@ export function ClockColorDialog({
                 className="text-primary"
               />
               <h3 className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground/60">
-                Visual Theme
+                Clock Face
               </h3>
             </div>
 

@@ -68,7 +68,7 @@ const SECTION_TITLES: Record<SettingsSection, string> = {
   wallpaper: "Wallpaper",
   layout: "Layout",
   behavior: "Behavior",
-  clock: "Clock",
+  clock: "Clock Face",
   shortcuts: "Shortcuts",
   history: "History",
   "profile-share": "Profile Share",
@@ -188,7 +188,7 @@ const SettingsMenu = () => {
             <DialogContent
               hideDefaultClose
               className={cn(
-                "p-0 overflow-hidden rounded-2xl w-full sm:max-w-3xl sm:h-[520px]",
+                "p-0 overflow-hidden rounded-2xl w-[85vw] max-w-[85vw] h-[85vh] max-h-[85vh]",
                 user?.role === "plus" && "border-violet-500/60",
                 user?.role === "lite" && "border-amber-400/60",
               )}

@@ -264,7 +264,7 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
             strokeWidth={2}
             className="text-primary"
           />
-          <span className="text-sm font-medium">Style</span>
+          <span className="text-sm font-medium">Clock Face</span>
         </div>
         <div className="grid grid-cols-2 gap-2">
           {(["classic", "modern", "elegant", "futuristic", "retro"] as const).map((s) => (

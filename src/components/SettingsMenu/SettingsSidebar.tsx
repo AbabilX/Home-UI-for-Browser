@@ -52,7 +52,7 @@ export function SettingsSidebar({
     { id: "wallpaper", label: "Wallpaper", icon: Image01Icon },
     { id: "layout", label: "Layout", icon: Search01Icon },
     { id: "behavior", label: "Behavior", icon: AccountSetting01Icon },
-    { id: "clock", label: "Clock", icon: Clock01Icon },
+    { id: "clock", label: "Clock Face", icon: Clock01Icon },
     { id: "shortcuts", label: "Shortcuts", icon: Maximize01Icon },
     { id: "history", label: t("history"), icon: TimeScheduleIcon },
     { id: "profile-share", label: t("profileShare"), icon: Share01Icon },
