@@ -54,6 +54,14 @@ const DEFAULT_TABS: Tab[] = [
     visitCount: 0,
     shortcut: migrateShortcutToPrimaryModifier("c"),
   },
+  {
+    id: "6",
+    title: "Ababilx Cloud",
+    url: "https://ababilx.cloud",
+    createdAt: Date.now(),
+    visitCount: 0,
+    shortcut: migrateShortcutToPrimaryModifier("a"),
+  },
 ];
 
 interface TabsState {
