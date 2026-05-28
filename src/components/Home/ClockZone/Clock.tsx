@@ -78,7 +78,11 @@ export default function DigitalClock() {
               ? "font-sans clock-style--modern"
               : clockStyle === "elegant"
                 ? "clock-style--elegant"
-                : "font-mono clock-style--classic",
+                : clockStyle === "futuristic"
+                  ? "clock-style--futuristic font-sans"
+                  : clockStyle === "retro"
+                    ? "clock-style--retro font-mono"
+                    : "font-mono clock-style--classic",
           )}
           style={
             {
@@ -87,13 +91,21 @@ export default function DigitalClock() {
                   ? "var(--font-fredoka)"
                   : clockStyle === "elegant"
                     ? "var(--font-righteous)"
-                    : "var(--font-share-tech-mono)",
+                    : clockStyle === "futuristic"
+                      ? "var(--font-orbitron)"
+                      : clockStyle === "retro"
+                        ? "var(--font-vt323)"
+                        : "var(--font-share-tech-mono)",
               letterSpacing:
                 clockStyle === "modern"
                   ? "-0.02em"
                   : clockStyle === "elegant"
                     ? "0.03em"
-                    : "0.02em",
+                    : clockStyle === "futuristic"
+                      ? "0.05em"
+                      : clockStyle === "retro"
+                        ? "0.04em"
+                        : "0.02em",
               color: "var(--clock-color)",
               textShadow: showClockGlow
                 ? "0 0 10px var(--glow-color), 0 0 20px var(--glow-color)"
@@ -116,7 +128,11 @@ export default function DigitalClock() {
                   ? "text-2xl"
                   : clockStyle === "elegant"
                     ? "text-2xl font-sans"
-                    : "text-xl font-mono",
+                    : clockStyle === "futuristic"
+                      ? "text-lg font-sans"
+                      : clockStyle === "retro"
+                        ? "text-2xl font-mono"
+                        : "text-xl font-mono",
               )}
               style={{
                 fontFamily:
@@ -124,7 +140,11 @@ export default function DigitalClock() {
                     ? "var(--font-fredoka)"
                     : clockStyle === "elegant"
                       ? "var(--font-righteous)"
-                      : "var(--font-share-tech-mono)",
+                      : clockStyle === "futuristic"
+                        ? "var(--font-orbitron)"
+                        : clockStyle === "retro"
+                          ? "var(--font-vt323)"
+                          : "var(--font-share-tech-mono)",
               }}
             >
               {timeData.ampm}

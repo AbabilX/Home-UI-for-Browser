@@ -266,20 +266,21 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
           />
           <span className="text-sm font-medium">Style</span>
         </div>
-        <div className="grid grid-cols-3 gap-2">
-          {(["classic", "modern", "elegant"] as const).map((s) => (
+        <div className="grid grid-cols-2 gap-2">
+          {(["classic", "modern", "elegant", "futuristic", "retro"] as const).map((s) => (
             <button
               key={s}
               onClick={() => setTempStyle(s)}
               className={cn(
-                "flex flex-col items-center py-3 rounded-xl border-2 transition-all",
+                "flex flex-col items-center py-2.5 rounded-xl border-2 transition-all",
                 tempStyle === s
                   ? "border-primary bg-primary/5"
                   : "border-border/30 bg-muted/5 hover:border-primary/30",
+                s === "retro" && "col-span-2 sm:col-span-1"
               )}
             >
               <span
-                className="text-sm font-bold"
+                className="text-sm font-bold tracking-wider"
                 style={{
                   color: tempStyle === s ? tempColor : "currentColor",
                   fontFamily:
@@ -287,12 +288,26 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
                       ? "var(--font-fredoka)"
                       : s === "elegant"
                         ? "var(--font-righteous)"
-                        : "var(--font-share-tech-mono)",
+                        : s === "futuristic"
+                          ? "var(--font-orbitron)"
+                          : s === "retro"
+                            ? "var(--font-vt323)"
+                            : "var(--font-share-tech-mono)",
+                  letterSpacing:
+                    s === "modern"
+                      ? "-0.02em"
+                      : s === "elegant"
+                        ? "0.03em"
+                        : s === "futuristic"
+                          ? "0.05em"
+                          : s === "retro"
+                            ? "0.04em"
+                            : "0.02em",
                 }}
               >
                 12:34
               </span>
-              <span className="text-[10px] text-muted-foreground mt-1 capitalize">
+              <span className="text-[10px] text-muted-foreground mt-0.5 capitalize">
                 {s}
               </span>
             </button>

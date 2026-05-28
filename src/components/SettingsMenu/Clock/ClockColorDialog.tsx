@@ -338,8 +338,8 @@ export function ClockColorDialog({
               </h3>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
-              {(["classic", "modern", "elegant"] as const).map((theme) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {(["classic", "modern", "elegant", "futuristic", "retro"] as const).map((theme) => (
                 <button
                   key={theme}
                   onClick={() => setTempStyle(theme)}
@@ -348,6 +348,7 @@ export function ClockColorDialog({
                     tempStyle === theme
                       ? "bg-primary/5 border-primary shadow-lg ring-2 ring-primary/5 scale-[1.02]"
                       : "bg-muted/5 border-border/10 hover:border-primary/30 hover:bg-muted/10 grayscale-[0.8] hover:grayscale-0",
+                    theme === "retro" && "col-span-2 sm:col-span-1"
                   )}
                 >
                   <div className="flex items-center justify-between mb-4 z-10">
@@ -365,7 +366,9 @@ export function ClockColorDialog({
                         "text-3xl font-bold transition-all duration-500",
                         theme === "classic"
                           ? "font-mono opacity-80 uppercase"
-                          : "font-sans",
+                          : theme === "retro"
+                            ? "font-mono"
+                            : "font-sans",
                       )}
                       style={{
                         fontFamily:
@@ -373,14 +376,22 @@ export function ClockColorDialog({
                             ? "var(--font-fredoka)"
                             : theme === "elegant"
                               ? "var(--font-righteous)"
-                              : "var(--font-share-tech-mono)",
+                              : theme === "futuristic"
+                                ? "var(--font-orbitron)"
+                                : theme === "retro"
+                                  ? "var(--font-vt323)"
+                                  : "var(--font-share-tech-mono)",
                         color: tempStyle === theme ? tempColor : "currentColor",
                         letterSpacing:
                           theme === "modern"
                             ? "-0.02em"
                             : theme === "elegant"
                               ? "0.03em"
-                              : "0.02em",
+                              : theme === "futuristic"
+                                ? "0.05em"
+                                : theme === "retro"
+                                  ? "0.04em"
+                                  : "0.02em",
                       }}
                     >
                       12:34
