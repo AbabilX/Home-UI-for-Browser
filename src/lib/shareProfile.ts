@@ -250,7 +250,7 @@ export const sanitizeShareSettings = (
     cardSize: toNumber(
       settings.cardSize,
       SHARE_SETTINGS_DEFAULTS.cardSize,
-      3,
+      1,
       10,
     ),
     cardRadius: toNumber(

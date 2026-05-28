@@ -6,6 +6,7 @@ import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { useSettingsStore } from "@/store/settingsStore";
+import { toast } from "sonner";
 
 interface ResizeShortcutsPanelProps {
   onBack?: () => void;
@@ -40,13 +41,13 @@ export function ResizeShortcutsPanel({ onBack }: ResizeShortcutsPanelProps) {
           <Slider
             value={[tempSize]}
             onValueChange={(v) => setTempSize(v[0])}
-            min={3}
+            min={1}
             max={10}
             step={0.5}
             className="w-full"
           />
           <div className="flex justify-between text-[10px] text-muted-foreground/60">
-            <span>Small (3rem)</span>
+            <span>Small (1rem)</span>
             <span>Large (10rem)</span>
           </div>
         </div>
@@ -115,6 +116,7 @@ export function ResizeShortcutsPanel({ onBack }: ResizeShortcutsPanelProps) {
           onClick={() => {
             setCardSize(tempSize);
             setCardRadius(tempRadius);
+            toast.success("Shortcut sizes updated");
             onBack?.();
           }}
         >

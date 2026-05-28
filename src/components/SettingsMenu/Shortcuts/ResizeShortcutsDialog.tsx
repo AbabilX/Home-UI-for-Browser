@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import { useSettingsStore } from "@/store/settingsStore";
+import { toast } from "sonner";
 
 interface ResizeShortcutsDialogProps {
   open: boolean;
@@ -75,13 +76,13 @@ export function ResizeShortcutsDialog({
               <Slider
                 value={[tempSize]}
                 onValueChange={handleSizeChange}
-                min={3}
+                min={1}
                 max={10}
                 step={0.5}
                 className="w-full"
               />
               <div className="flex justify-between text-xs text-muted-foreground">
-                <span>Small (3rem)</span>
+                <span>Small (1rem)</span>
                 <span>Large (10rem)</span>
               </div>
             </div>
