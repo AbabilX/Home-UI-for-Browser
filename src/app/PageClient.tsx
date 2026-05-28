@@ -82,6 +82,18 @@ export function PageClient() {
     isAuthDialogOpenRef.current = isAuthDialogOpen;
   }, [isAuthDialogOpen]);
 
+  useEffect(() => {
+    const handleOpenSearch = (e: Event) => {
+      const customEvent = e as CustomEvent<{ seedText?: string }>;
+      const seedText = customEvent.detail?.seedText || "";
+      setSearchOpenRequest((r) => ({ id: r.id + 1, seedText }));
+      setIsSearchModalOpen(true);
+      isSearchModalOpenRef.current = true;
+    };
+    window.addEventListener("open-search-modal", handleOpenSearch);
+    return () => window.removeEventListener("open-search-modal", handleOpenSearch);
+  }, []);
+
   const handleSearchModalOpenChange = (nextOpen: boolean) => {
     isSearchModalOpenRef.current = nextOpen;
     isSearchInputReadyRef.current = false;
