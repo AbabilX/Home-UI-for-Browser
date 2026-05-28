@@ -37,6 +37,7 @@ const SearchModal = ({
   const [query, setQuery] = useState("");
   const [apiSuggestions, setApiSuggestions] = useState<string[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [isInlineHistoryDismissed, setIsInlineHistoryDismissed] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const lastAppliedRequestIdRef = useRef(0);
 
@@ -102,7 +103,8 @@ const SearchModal = ({
 
   // Browser-style: when history inline completion is active, show the completion
   // as a real text selection in the input (typed part normal, completion = selected)
-  const isHistoryComplete = inlineIsHistory && !!inlineValue;
+  const isHistoryComplete =
+    !isInlineHistoryDismissed && inlineIsHistory && !!inlineValue;
   useLayoutEffect(() => {
     if (!isHistoryComplete || !inputRef.current) return;
     const el = inputRef.current;
@@ -112,6 +114,10 @@ const SearchModal = ({
       el.setSelectionRange(start, end);
     }
   });
+
+  useEffect(() => {
+    setIsInlineHistoryDismissed(false);
+  }, [query, open]);
 
   // Fetch API suggestions
   useEffect(() => {
@@ -204,6 +210,7 @@ const SearchModal = ({
 
   const acceptInlineCompletion = () => {
     if (!inlineValue) return false;
+    setIsInlineHistoryDismissed(false);
     setQuery(inlineValue);
     setActiveIndex(-1);
     requestAnimationFrame(() => {
@@ -216,6 +223,49 @@ const SearchModal = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    const isPlainCharacterKey =
+      e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey;
+
+    if (isHistoryComplete && (e.key === "Backspace" || isPlainCharacterKey)) {
+      e.preventDefault();
+      setActiveIndex(-1);
+      setIsInlineHistoryDismissed(false);
+      if (e.key === "Backspace") {
+        setQuery((prev) => prev.slice(0, -1));
+      } else {
+        setQuery((prev) => `${prev}${e.key}`);
+      }
+      return;
+    }
+
+    if (isHistoryComplete && (e.key === "ArrowLeft" || e.key === "Delete")) {
+      e.preventDefault();
+      setActiveIndex(-1);
+      setIsInlineHistoryDismissed(true);
+      requestAnimationFrame(() => {
+        const caretPos =
+          e.key === "ArrowLeft" ? Math.max(query.length - 1, 0) : query.length;
+        inputRef.current?.setSelectionRange(caretPos, caretPos);
+      });
+      return;
+    }
+
+    if (isHistoryComplete && e.key === "Home") {
+      e.preventDefault();
+      setActiveIndex(-1);
+      setIsInlineHistoryDismissed(true);
+      requestAnimationFrame(() => {
+        inputRef.current?.setSelectionRange(0, 0);
+      });
+      return;
+    }
+
+    if (isHistoryComplete && e.key === "End") {
+      e.preventDefault();
+      acceptInlineCompletion();
+      return;
+    }
+
     if (e.key === "ArrowDown") {
       if (!allItems.length) return;
       e.preventDefault();

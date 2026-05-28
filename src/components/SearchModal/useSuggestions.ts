@@ -29,10 +29,11 @@ export function useSuggestions({
   const historyEntries = useSearchHistoryStore((s) => s.entries);
   const tabs = useTabsStore((s) => s.tabs);
   const t = useTranslation(language);
-  const normalizedQuery = query.trim().toLowerCase();
+  const normalizedQuery = query.toLowerCase();
+  const normalizedQueryTrimmed = query.trim().toLowerCase();
 
   return useMemo(() => {
-    if (!normalizedQuery) {
+    if (!normalizedQueryTrimmed) {
       const tabItems: SuggestionItem[] = tabs.slice(0, 6).map((tab) => ({
         id: `tab-${tab.id}`,
         type: "tab" as const,
@@ -89,7 +90,7 @@ export function useSuggestions({
     const apiItems: SuggestionItem[] = apiSuggestions
       .map((s) => s.trim())
       .filter(Boolean)
-      .filter((s) => s.toLowerCase() !== normalizedQuery)
+      .filter((s) => s.toLowerCase() !== normalizedQueryTrimmed)
       .filter((s) => !localValueSet.has(s.toLowerCase()))
       .slice(0, 5)
       .map((s) => ({
@@ -118,9 +119,7 @@ export function useSuggestions({
 
     const inlineValue = historyInline?.value ?? apiInline ?? null;
     const inlineIsHistory = !!historyInline;
-    const inlineSuffix = inlineValue
-      ? inlineValue.slice(query.trim().length)
-      : "";
+    const inlineSuffix = inlineValue ? inlineValue.slice(query.length) : "";
 
     return {
       allItems,
@@ -129,5 +128,13 @@ export function useSuggestions({
       inlineIsHistory,
       inlineSuffix,
     };
-  }, [normalizedQuery, historyEntries, tabs, apiSuggestions, t, query]);
+  }, [
+    normalizedQuery,
+    normalizedQueryTrimmed,
+    historyEntries,
+    tabs,
+    apiSuggestions,
+    t,
+    query,
+  ]);
 }

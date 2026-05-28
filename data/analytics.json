@@ -1,5 +1,14 @@
 {
-  "searchQueries": {},
+  "searchQueries": {
+    "": {
+      "query": "",
+      "normalizedQuery": "",
+      "count": 1,
+      "searchEngine": null,
+      "createdAt": "2026-05-28T06:43:54.176Z",
+      "updatedAt": "2026-05-28T06:43:54.176Z"
+    }
+  },
   "visitCounts": {
     "site-homepage": {
       "key": "site-homepage",
