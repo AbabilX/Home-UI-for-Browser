@@ -165,14 +165,18 @@ export function WallpaperSection() {
           </button>
           {DEFAULT_DYNAMIC_WALLPAPERS.map((wallpaper, idx) => {
             const { url, mode } = normalizeDynamicWallpaper(wallpaper);
+            const isActive = backgroundImage === url;
+
             return (
               <button
                 key={url}
                 onClick={() => handleWallpaperClick(url)}
                 className={cn(
                   "relative h-14 w-20 shrink-0 overflow-hidden rounded-xl border-2 transition-all",
-                  backgroundImage === url && !isDynamicWallpaper
-                    ? "border-primary scale-[1.05] shadow-lg"
+                  isActive
+                    ? isDynamicWallpaper
+                      ? "border-violet-500 scale-[1.05] shadow-lg shadow-violet-500/20"
+                      : "border-primary scale-[1.05] shadow-lg shadow-primary/20"
                     : "border-transparent opacity-60 hover:opacity-100",
                 )}
               >
@@ -183,6 +187,14 @@ export function WallpaperSection() {
                   height={56}
                   className="h-full w-full object-cover"
                 />
+                
+                {/* Auto change active indicator */}
+                {isActive && isDynamicWallpaper && (
+                  <span className="absolute top-1 left-1 bg-violet-600/90 text-[7px] text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-wider select-none animate-pulse">
+                    Auto
+                  </span>
+                )}
+
                 <span className="absolute bottom-0.5 right-0.5 rounded bg-black/55 px-1 text-[8px] font-semibold uppercase leading-3 text-white">
                   {mode === "both" ? "all" : mode.charAt(0)}
                 </span>
