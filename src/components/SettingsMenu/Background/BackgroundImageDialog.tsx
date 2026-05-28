@@ -5,6 +5,7 @@ import { Upload, X, Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogContent,
@@ -67,6 +68,7 @@ export function BackgroundImageDialog({
   const handleSave = async () => {
     // console.log("Saving background image:", tempBackgroundImage);
     await setBackgroundImage(tempBackgroundImage);
+    toast.success("Background image updated");
     onOpenChange(false);
   };
 

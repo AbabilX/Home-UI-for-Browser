@@ -40,6 +40,7 @@ export function ResizeShortcutsDialog({
   const handleSave = () => {
     setCardSize(tempSize);
     setCardRadius(tempRadius);
+    toast.success("Shortcut sizes updated");
     onOpenChange(false);
   };
 

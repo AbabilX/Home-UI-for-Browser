@@ -9,7 +9,7 @@ export function Toaster() {
   return (
     <Sonner
       theme={theme as "light" | "dark" | "system"}
-      position="bottom-center"
+      position="top-center"
       richColors
       closeButton
       offset={24}
