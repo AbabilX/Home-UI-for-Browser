@@ -306,7 +306,7 @@ const SearchModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContentBottom className="w-full border-0 bg-transparent p-4 shadow-none sm:bottom-8 sm:max-w-2xl">
+      <DialogContentBottom className="w-full border-0 bg-transparent p-4 shadow-none top-4 bottom-auto sm:top-auto sm:bottom-8 sm:max-w-2xl data-[state=open]:slide-in-from-top-8 data-[state=closed]:slide-out-to-top-8 sm:data-[state=open]:slide-in-from-bottom-8 sm:data-[state=closed]:slide-out-to-bottom-8">
         <DialogTitle className="sr-only">Search</DialogTitle>
         <div className="mx-auto w-full max-w-2xl">
           <div className="relative rounded-full border border-border/50 bg-background/92 backdrop-blur-md">
