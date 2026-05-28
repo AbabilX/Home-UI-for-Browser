@@ -8,6 +8,7 @@ import {
   Clock,
   ImageIcon,
   Maximize2,
+  Search,
 } from "lucide-react";
 import Link from "next/link";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
@@ -171,7 +172,7 @@ const SortableShortcutCard = ({
               : isDragging
                 ? "grabbing"
                 : "grab",
-            width: `${cardSize}rem`,
+            width: "var(--card-size-dynamic, 4.5rem)",
           }}
         >
           <Tooltip>
@@ -188,10 +189,10 @@ const SortableShortcutCard = ({
                 <div
                   className="relative flex items-center justify-center overflow-hidden transition-transform active:scale-90"
                   style={{
-                    width: `${cardSize}rem`,
-                    height: `${cardSize}rem`,
+                    width: "var(--card-size-dynamic, 4.5rem)",
+                    height: "var(--card-size-dynamic, 4.5rem)",
                     border: "0.5px solid rgba(255,255,255,0.42)",
-                    borderRadius: `${cardRadius}rem`,
+                    borderRadius: "var(--card-radius-dynamic, 0.625rem)",
                     background: "rgba(255,255,255,0.12)",
                     backdropFilter: "blur(14px) saturate(1.2)",
                     boxShadow: "0 8px 20px rgba(15,23,42,0.12)",
@@ -201,9 +202,9 @@ const SortableShortcutCard = ({
                   <Avatar
                     className="overflow-visible border-0 bg-transparent"
                     style={{
-                      width: `${cardSize * 0.68}rem`,
-                      height: `${cardSize * 0.68}rem`,
-                      borderRadius: `${cardSize * 0.06}rem`,
+                      width: "calc(var(--card-size-dynamic, 4.5rem) * 0.68)",
+                      height: "calc(var(--card-size-dynamic, 4.5rem) * 0.68)",
+                      borderRadius: "calc(var(--card-size-dynamic, 4.5rem) * 0.06)",
                     }}
                   >
                     {favicon ? (
@@ -212,16 +213,16 @@ const SortableShortcutCard = ({
                         alt={hostname}
                         className="object-contain"
                         style={{
-                          borderRadius: `${cardSize * 0.06}rem`,
+                          borderRadius: "calc(var(--card-size-dynamic, 4.5rem) * 0.06)",
                         }}
                       />
                     ) : null}
                     <AvatarFallback
                       style={{
                         backgroundColor: "transparent",
-                        fontSize: `${Math.max(0.6, cardSize * 0.28)}rem`,
+                        fontSize: "max(0.55rem, calc(var(--card-size-dynamic, 4.5rem) * 0.28))",
                         fontWeight: 600,
-                        borderRadius: `${cardSize * 0.06}rem`,
+                        borderRadius: "calc(var(--card-size-dynamic, 4.5rem) * 0.06)",
                       }}
                       className="text-foreground"
                     >
@@ -240,7 +241,7 @@ const SortableShortcutCard = ({
           <p
             className="w-full text-center text-foreground leading-tight"
             style={{
-              fontSize: `${Math.max(0.6, cardSize * 0.17)}rem`,
+              fontSize: "max(0.5rem, calc(var(--card-size-dynamic, 4.5rem) * 0.17))",
               fontWeight: 400,
               letterSpacing: "0px",
               overflow: "hidden",
@@ -350,6 +351,20 @@ export const TabsList = () => {
         <div className="flex justify-end mb-6">
           <AddTabDialog />
         </div>
+        
+        {/* Mobile Only Search Box */}
+        <div 
+          onClick={() => {
+            window.dispatchEvent(new CustomEvent("open-search-modal"));
+          }}
+          className="mobile-search-box md:hidden w-full max-w-sm mx-auto mb-6 flex items-center gap-2.5 h-11 px-4 rounded-full border border-border/40 bg-background/25 backdrop-blur-lg hover:bg-background/40 active:scale-98 transition-all cursor-pointer shadow-lg shadow-black/5"
+        >
+          <Search className="h-4.5 w-4.5 text-muted-foreground/80" />
+          <span className="text-sm text-muted-foreground/60 select-none">
+            {t("search")}
+          </span>
+        </div>
+
         <div className="flex-1 flex items-center justify-center">
           <Card className="flex h-36 items-center justify-center border-dashed border-border/60 bg-muted/30">
             <p className="text-sm text-muted-foreground">
@@ -370,6 +385,20 @@ export const TabsList = () => {
       <div className="flex justify-end mb-6">
         <AddTabDialog />
       </div>
+
+      {/* Mobile Only Search Box */}
+      <div 
+        onClick={() => {
+          window.dispatchEvent(new CustomEvent("open-search-modal"));
+        }}
+        className="mobile-search-box md:hidden w-full max-w-sm mx-auto mb-6 flex items-center gap-2.5 h-11 px-4 rounded-full border border-border/40 bg-background/25 backdrop-blur-lg hover:bg-background/40 active:scale-98 transition-all cursor-pointer shadow-lg shadow-black/5"
+      >
+        <Search className="h-4.5 w-4.5 text-muted-foreground/80" />
+        <span className="text-sm text-muted-foreground/60 select-none">
+          {t("search")}
+        </span>
+      </div>
+
       <TooltipProvider delayDuration={150}>
         <DndProvider backend={HTML5Backend}>
           <div
@@ -382,9 +411,10 @@ export const TabsList = () => {
               className="flex flex-wrap gap-4 justify-center w-full mx-auto"
               style={
                 {
-                  "--card-size": `${cardSize}rem`,
-                  maxWidth: `calc(8 * ${cardSize}rem + 7 * 1rem)`, // 8 items + 7 gaps
-                  minWidth: `calc(2 * ${cardSize}rem + 1 * 1rem)`, // 2 items + 1 gap
+                  "--base-card-size": `${cardSize}rem`,
+                  "--base-card-radius": `${cardRadius}rem`,
+                  maxWidth: `calc(8 * var(--card-size-dynamic, 4.5rem) + 7 * 1rem)`, // 8 items + 7 gaps
+                  minWidth: `calc(2 * var(--card-size-dynamic, 4.5rem) + 1 * 1rem)`, // 2 items + 1 gap
                 } as React.CSSProperties
               }
             >
@@ -392,7 +422,7 @@ export const TabsList = () => {
                 <div
                   key={tab.id}
                   style={{
-                    width: `${cardSize}rem`,
+                    width: "var(--card-size-dynamic, 4.5rem)",
                   }}
                 >
                   <SortableShortcutCard
