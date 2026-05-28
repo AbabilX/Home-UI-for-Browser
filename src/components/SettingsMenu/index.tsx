@@ -32,7 +32,6 @@ import { WallpaperSection } from "./sections/WallpaperSection";
 import { LayoutSection } from "./sections/LayoutSection";
 import { BehaviorSection } from "./sections/BehaviorSection";
 import { ProfileShareSection } from "./sections/ProfileShareSection";
-import { PricingSection } from "./sections/PricingSection";
 import { AIModelsSection } from "./sections/AIModelsSection";
 import { AccountLoginSection } from "./sections/AccountLoginSection";
 import { AccountProfileSection } from "./sections/AccountProfileSection";
@@ -73,7 +72,6 @@ const SECTION_TITLES: Record<SettingsSection, string> = {
   shortcuts: "Shortcuts",
   history: "History",
   "profile-share": "Profile Share",
-  pricing: "Pricing",
   "ai-models": "AI Models",
   "account-login": "Sign In",
   "account-profile": "My Profile",
@@ -155,8 +153,6 @@ const SettingsMenu = () => {
         return <HistoryPanel />;
       case "profile-share":
         return <ProfileShareSection />;
-      case "pricing":
-        return <PricingSection userRole={userRole} />;
       case "ai-models":
         return <AIModelsSection userRole={userRole} />;
       case "account-login":

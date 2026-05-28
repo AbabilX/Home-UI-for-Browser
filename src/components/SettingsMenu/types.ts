@@ -7,7 +7,6 @@ export type SettingsSection =
   | "shortcuts"
   | "history"
   | "profile-share"
-  | "pricing"
   | "ai-models"
   | "account-login"
   | "account-profile"

@@ -56,7 +56,6 @@ export function SettingsSidebar({
     { id: "shortcuts", label: "Shortcuts", icon: Maximize01Icon },
     { id: "history", label: t("history"), icon: TimeScheduleIcon },
     { id: "profile-share", label: t("profileShare"), icon: Share01Icon },
-    { id: "pricing", label: "Pricing", icon: Crown02Icon },
     ...(userRole === "lite" || userRole === "plus"
       ? [
           {
