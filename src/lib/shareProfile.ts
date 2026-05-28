@@ -46,7 +46,7 @@ export interface ShareProfileV1 {
   settings: ShareProfileSettings;
 }
 
-export const DEFAULT_CARD_SIZE = 2;
+export const DEFAULT_CARD_SIZE = 3;
 export const LEGACY_DEFAULT_CARD_SIZE = 5;
 
 export const SHARE_SETTINGS_DEFAULTS: ShareProfileSettings = {

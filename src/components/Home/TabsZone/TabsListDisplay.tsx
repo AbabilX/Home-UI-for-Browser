@@ -413,7 +413,7 @@ export const TabsList = () => {
             )}
           >
             <div
-              className="flex flex-wrap gap-4 justify-center w-full mx-auto"
+              className="flex flex-wrap gap-4 justify-center w-full mx-auto shortcut-card-grid"
               style={
                 {
                   "--base-card-size": `${cardSize}rem`,

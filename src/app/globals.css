@@ -146,14 +146,17 @@ body:has([role="dialog"]) .mobile-search-box {
 }
 
 /* Fluid responsive shortcut card sizing */
-:root {
+:root,
+.shortcut-card-grid {
   --card-size-dynamic: var(--base-card-size, 4.5rem);
   --card-radius-dynamic: var(--base-card-radius, 0.625rem);
 }
 
 @media (max-width: 768px) {
-  :root {
+  :root,
+  .shortcut-card-grid {
     --card-size-dynamic: clamp(2.7rem, 10vw, var(--base-card-size, 4.5rem));
     --card-radius-dynamic: calc(var(--card-size-dynamic) * 0.16);
   }
 }
+
