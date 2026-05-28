@@ -46,7 +46,7 @@ export interface ShareProfileV1 {
   settings: ShareProfileSettings;
 }
 
-export const DEFAULT_CARD_SIZE = 4;
+export const DEFAULT_CARD_SIZE = 3.5;
 export const LEGACY_DEFAULT_CARD_SIZE = 5;
 
 export const SHARE_SETTINGS_DEFAULTS: ShareProfileSettings = {
@@ -56,7 +56,7 @@ export const SHARE_SETTINGS_DEFAULTS: ShareProfileSettings = {
   showClock: true,
   showRightSidebar: true,
   enableLeftSidebarHover: false,
-  tabsPosition: "top",
+  tabsPosition: "center",
   cardSize: DEFAULT_CARD_SIZE,
   cardRadius: 0.5,
   clockColor: "#ffffff",
@@ -65,7 +65,7 @@ export const SHARE_SETTINGS_DEFAULTS: ShareProfileSettings = {
   showSeconds: false,
   searchEngine: "google",
   layoutPreset: "default",
-  clockPosition: "top-center",
+  clockPosition: "top-right",
   clockStyle: "modern",
   isDynamicWallpaper: true,
   autoFocusSearch: false,
