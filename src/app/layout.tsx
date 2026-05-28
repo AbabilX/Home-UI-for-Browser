@@ -1,5 +1,4 @@
-import type { Metadata } from "next";
-import { Share_Tech_Mono, Fredoka } from "next/font/google";
+import { Share_Tech_Mono, Fredoka, Righteous, Orbitron } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
@@ -14,6 +13,18 @@ const fredoka = Fredoka({
   subsets: ["latin"],
   weight: "700",
   variable: "--font-fredoka",
+});
+
+const righteous = Righteous({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-righteous",
+});
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  weight: "700",
+  variable: "--font-orbitron",
 });
 
 export const metadata: Metadata = {
@@ -58,7 +69,7 @@ export default function RootLayout({
       <html
         lang="en"
         suppressHydrationWarning
-        className={`${shareTech.variable} ${fredoka.variable}`}
+        className={`${shareTech.variable} ${fredoka.variable} ${righteous.variable}`}
       >
         <head />
         <body>

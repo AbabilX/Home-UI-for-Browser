@@ -76,15 +76,24 @@ export default function DigitalClock() {
             "clock-style text-7xl text-center flex items-baseline justify-center cursor-context-menu select-none",
             clockStyle === "modern"
               ? "font-sans clock-style--modern"
-              : "font-mono clock-style--classic",
+              : clockStyle === "elegant"
+                ? "clock-style--elegant"
+                : "font-mono clock-style--classic",
           )}
           style={
             {
               fontFamily:
                 clockStyle === "modern"
                   ? "var(--font-fredoka)"
-                  : "var(--font-share-tech-mono)",
-              letterSpacing: clockStyle === "modern" ? "-0.02em" : "0.02em",
+                  : clockStyle === "elegant"
+                    ? "var(--font-righteous)"
+                    : "var(--font-share-tech-mono)",
+              letterSpacing:
+                clockStyle === "modern"
+                  ? "-0.02em"
+                  : clockStyle === "elegant"
+                    ? "0.03em"
+                    : "0.02em",
               color: "var(--clock-color)",
               textShadow: showClockGlow
                 ? "0 0 10px var(--glow-color), 0 0 20px var(--glow-color)"
@@ -103,13 +112,19 @@ export default function DigitalClock() {
             <span
               className={cn(
                 "ml-2 opacity-40 font-medium self-end mb-2",
-                clockStyle === "modern" ? "text-2xl" : "text-xl font-mono",
+                clockStyle === "modern"
+                  ? "text-2xl"
+                  : clockStyle === "elegant"
+                    ? "text-2xl font-sans"
+                    : "text-xl font-mono",
               )}
               style={{
                 fontFamily:
                   clockStyle === "modern"
                     ? "var(--font-fredoka)"
-                    : "var(--font-share-tech-mono)",
+                    : clockStyle === "elegant"
+                      ? "var(--font-righteous)"
+                      : "var(--font-share-tech-mono)",
               }}
             >
               {timeData.ampm}

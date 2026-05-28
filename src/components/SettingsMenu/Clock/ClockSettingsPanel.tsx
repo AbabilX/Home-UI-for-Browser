@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useSettingsStore, ClockPosition } from "@/store/settingsStore";
 import { getTranslation } from "@/constants/languages";
+import { toast } from "sonner";
 
 const CLOCK_COLORS = [
   "#eab308",
@@ -85,6 +86,7 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
     setShowSeconds(tempSeconds);
     setClockPosition(tempPosition);
     setClockStyle(tempStyle);
+    toast.success("Clock settings updated");
     onBack?.();
   };
 
@@ -264,8 +266,8 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
           />
           <span className="text-sm font-medium">Style</span>
         </div>
-        <div className="grid grid-cols-2 gap-2">
-          {(["classic", "modern"] as const).map((s) => (
+        <div className="grid grid-cols-3 gap-2">
+          {(["classic", "modern", "elegant"] as const).map((s) => (
             <button
               key={s}
               onClick={() => setTempStyle(s)}
@@ -283,7 +285,9 @@ export function ClockSettingsPanel({ onBack }: ClockSettingsPanelProps) {
                   fontFamily:
                     s === "modern"
                       ? "var(--font-fredoka)"
-                      : "var(--font-share-tech-mono)",
+                      : s === "elegant"
+                        ? "var(--font-righteous)"
+                        : "var(--font-share-tech-mono)",
                 }}
               >
                 12:34

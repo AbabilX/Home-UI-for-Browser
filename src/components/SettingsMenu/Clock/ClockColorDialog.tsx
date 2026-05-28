@@ -22,6 +22,7 @@ import { getTranslation } from "@/constants/languages";
 import { useSettingsStore, ClockPosition } from "@/store/settingsStore";
 import "@/components/Home/ClockZone/Clock.css";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface ClockColorDialogProps {
   open: boolean;
@@ -112,6 +113,7 @@ export function ClockColorDialog({
     setShowSeconds(tempSeconds);
     setClockPosition(tempPosition);
     setClockStyle(tempStyle);
+    toast.success("Clock settings updated");
     onOpenChange(false);
   };
 
@@ -336,8 +338,8 @@ export function ClockColorDialog({
               </h3>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              {(["classic", "modern"] as const).map((theme) => (
+            <div className="grid grid-cols-3 gap-4">
+              {(["classic", "modern", "elegant"] as const).map((theme) => (
                 <button
                   key={theme}
                   onClick={() => setTempStyle(theme)}
@@ -369,10 +371,16 @@ export function ClockColorDialog({
                         fontFamily:
                           theme === "modern"
                             ? "var(--font-fredoka)"
-                            : "var(--font-share-tech-mono)",
+                            : theme === "elegant"
+                              ? "var(--font-righteous)"
+                              : "var(--font-share-tech-mono)",
                         color: tempStyle === theme ? tempColor : "currentColor",
                         letterSpacing:
-                          theme === "modern" ? "-0.02em" : "0.02em",
+                          theme === "modern"
+                            ? "-0.02em"
+                            : theme === "elegant"
+                              ? "0.03em"
+                              : "0.02em",
                       }}
                     >
                       12:34

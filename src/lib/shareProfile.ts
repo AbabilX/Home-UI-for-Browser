@@ -86,7 +86,7 @@ const CLOCK_POSITION_VALUES: ClockPosition[] = [
   "top-center",
   "top-right",
 ];
-const CLOCK_STYLE_VALUES: ClockStyle[] = ["classic", "modern"];
+const CLOCK_STYLE_VALUES: ClockStyle[] = ["classic", "modern", "elegant"];
 const CLOCK_FORMAT_VALUES: Array<"12h" | "24h"> = ["12h", "24h"];
 
 const isObject = (value: unknown): value is Record<string, unknown> =>
